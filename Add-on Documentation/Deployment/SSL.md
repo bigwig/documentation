@@ -46,8 +46,8 @@ platform.
 
 |Platform|Install method|
 |:-------|:-------------|
-|Mac OS X|[http://mxcl.github.com/homebrew/][Homebrew]:`brew install openssl`|
-|Windows||[http://gnuwin32.sourceforge.net/packages/openssl.htm][Windows package installer]
+|Mac OS X|[Homebrew](http://mxcl.github.com/homebrew/):`brew install openssl`|
+|Windows||[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
 |Ubuntu Linux|`apt-get install openssl`|
 
 After you are done with the installation use the openssl command line tool to
@@ -92,7 +92,7 @@ The file created after this process is a `server.csr`.
 
 Please pay attention to the fields Country Name and Common Name. The country
 name should contain the 2 letter code of your country according to the
-[http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm][ISO 3166-1]
+[ISO 3166-1](http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm)
 format. Second and most important is the common name. That should reflect the
 domain for which you want to issue the certificate. As mentioned earlier this
 cannot be a root domain but has to have a format like `www.example.com`.
@@ -113,7 +113,7 @@ certificate is issued by a trustworthy provider authorized by a Root CA.  Root
 CA certificates are stored in all modern browsers and this is how your browser
 is able to verify that your website is secure. In the other case you will get
 something like this
-![Firefox warning][http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png]
+![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
 
 ### Adding the SSL addon
 
