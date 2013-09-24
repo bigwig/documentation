@@ -25,21 +25,21 @@ Please follow these three simple steps to add SSL support to your deployment.
 Note: Please allow up to one hour for DNS changes to propagate before they go
 into effect.
 
-### Aquiring an SSL Certificate
+### Acquiring an SSL Certificate
 
 The is wide variety of Certificate Authorities (CA) which differ in the cost
-and the proccess of acquiring an SSL cerificate. The majority of them offers a
+and the process of acquiring an SSL certificate. The majority of them offers a
 trial period that you can try and compare every service. In most cases you need
 to go through the following steps.
 
 Note: For testing purposes you can always use a self-signed certificate which
-is free of costs and does not require going through the registration proccess
+is free of costs and does not require going through the registration process
 of individual providers.
 
 #### Generate a private key
 
-For aquiring an SSL Certificate you need to provide to your CA an RSA Private
-Key and a CSR (Certificate Singing Request). Those can aslo be used for
+For acquiring an SSL Certificate you need to provide to your CA an RSA Private
+Key and a CSR (Certificate Singing Request). Those can also be used for
 creating self-signed certificates. To generate them you need the openssl
 toolkit which can be install with one of the following ways according to your
 platform.
@@ -108,10 +108,11 @@ be OK.
 In the end your CA will provide you some files including the SSL certificate
 and the Certificate Chain.
 
-Note: The certificate chain is a chain of trust that proves
-that your certificate is issued by a trustworthy provider authorized by a Root CA.
-Root CA certificates are stored in all modern browsers and this is how your browser
-is able to verify that your website is secure. In the other case you will get something like this
+Note: The certificate chain is a chain of trust that proves that your
+certificate is issued by a trustworthy provider authorized by a Root CA.  Root
+CA certificates are stored in all modern browsers and this is how your browser
+is able to verify that your website is secure. In the other case you will get
+something like this
 ![Firefox warning][http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png]
 
 ### Adding the SSL addon
@@ -160,7 +161,7 @@ file or directly in your PHP code.
 ~~~
 <IfModule mod_rewrite.c> 
     RewriteEngine On
-    
+
     RewriteCond %{HTTP:X-FORWARDED-PROTO} !=https [NC]
     RewriteRule ^.*$ https://%{HTTP_HOST}
 </IfModule>
@@ -169,17 +170,13 @@ file or directly in your PHP code.
 #### PHP
 ~~~php
 <?php
-
     if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 
         $_SERVER['HTTP_X_FORWARDED_PROTO'] != 'https') {
-        
         header(
             'Location: https://' . 
             $_SERVER['HTTP_HOST'] . 
             $_SERVER['REQUEST_URI']
         );
-    
     }
-
 ?>
 ~~~
