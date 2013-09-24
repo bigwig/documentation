@@ -18,12 +18,101 @@ To enable SSL support for custom domains like `www.example.com` or
 Please follow these three simple steps to add SSL support to your deployment.
 
  1. Acquire a signed certificate from your certificate authority of trust.
- 2. Ensure the key is not protected by a passphrase.
- 3. Add the SSL addon providing the certificate, the private key and
+ 2. Add the SSL addon providing the certificate, the private key and
     certificate-chain files.
+ 3. Set your DNS entry to point to your SSL DNS Domain
 
 Note: Please allow up to one hour for DNS changes to propagate before they go
 into effect.
+
+### Aquiring an SSL Certificate
+
+The is wide variety of Certificate Authorities (CA) which differ in the cost
+and the proccess of acquiring an SSL cerificate. The majority of them offers a
+trial period that you can try and compare every service. In most cases you need
+to go through the following steps.
+
+Note: For testing purposes you can always use a self-signed certificate which
+is free of costs and does not require going through the registration proccess
+of individual providers.
+
+#### Generate a private key
+
+For aquiring an SSL Certificate you need to provide to your CA an RSA Private
+Key and a CSR (Certificate Singing Request). Those can aslo be used for
+creating self-signed certificates. To generate them you need the openssl
+toolkit which can be install with one of the following ways according to your
+platform.
+
+|Platform|Install method|
+|:-------|:-------------|
+|Mac OS X|[http://mxcl.github.com/homebrew/][Homebrew]:`brew install openssl`|
+|Windows||[http://gnuwin32.sourceforge.net/packages/openssl.htm][Windows package installer]
+|Ubuntu Linux|`apt-get install openssl`|
+
+After you are done with the installation use the openssl command line tool to
+create your private RSA key:
+ ~~~
+ $ openssl genrsa -des3 -out server.key.org 2048
+ # Enter and confirm a password
+ ~~~
+
+The generated key is protected by a password which needs to be removed so
+that it can be loaded by the web server without asking for the password.
+
+ ~~~
+ $ openssl rsa -in server.key.org -out server.key
+ ~~~
+
+Your private key used for the process is now saved in the file `server.key`
+
+#### Generate a CSR (Certificate Singing Request)
+
+The next set is generating the CSR which is required by the CA and is
+containing all the information regarding your company or organization thus
+prompting you to enter those.
+
+ ~~~
+ $ openssl req -new -key server.key -out server.csr
+ # Output
+ # Country Name (2 letter code) [AU]:DE
+ # State or Province Name (full name) [Some-State]:
+ # Locality Name (eg, city) []:
+ # Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+ # Organizational Unit Name (eg, section) []:Information Technology
+ # Common Name (eg, your name or your server's hostname) []:www.example.com
+ # Email Address []:
+ # Please enter the following 'extra' attributes
+ # to be sent with your certificate request
+ # A challenge password []:
+ # An optional company name []:
+ ~~~
+
+The file created after this process is a `server.csr`.
+
+Please pay attention to the fields Country Name and Common Name. The country
+name should contain the 2 letter code of your country according to the
+[http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm][ISO 3166-1]
+format. Second and most important is the common name. That should reflect the
+domain for which you want to issue the certificate. As mentioned earlier this
+cannot be a root domain but has to have a format like `www.example.com`.
+
+#### Issuing the Certificate
+
+After choosing you CA you have to go through their process of issuing the
+certificate. For that you will need to provide the CSR file and in many cases
+to define the web server you are going to use. In that case you should select
+the Nginx web server and if this is not an option then Apache 2.x should also
+be OK.
+
+In the end your CA will provide you some files including the SSL certificate
+and the Certificate Chain.
+
+Note: The certificate chain is a chain of trust that proves
+that your certificate is issued by a trustworthy provider authorized by a Root CA.
+Root CA certificates are stored in all modern browsers and this is how your browser
+is able to verify that your website is secure. In the other case you will get something like this
+![Firefox warning][http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png]
 
 ### Adding the SSL addon
 
