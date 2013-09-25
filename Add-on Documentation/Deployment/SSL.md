@@ -27,7 +27,7 @@ into effect.
 
 ### Acquiring an SSL Certificate
 
-The is wide variety of Certificate Authorities (CA) which differ in the cost
+There is wide variety of Certificate Authorities (CA) which differ in cost
 and the process of acquiring an SSL certificate. The majority of them offers a
 trial period that you can try and compare every service. In most cases you need
 to go through the following steps.
@@ -38,11 +38,10 @@ of individual providers.
 
 #### Generate a private key
 
-For acquiring an SSL Certificate you need to provide to your CA an RSA Private
-Key and a CSR (Certificate Singing Request). Those can also be used for
-creating self-signed certificates. To generate them you need the openssl
-toolkit which can be install with one of the following ways according to your
-platform.
+As mentioned earlier, to enable SSL support you need a private key, your
+certificate and the certificate chain. For that process you will need the
+openssl toolkit which can be installed with one of the following ways according
+to your platform.
 
 |Platform|Install method|
 |:-------|:-------------|
@@ -50,16 +49,17 @@ platform.
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
 |Ubuntu Linux|`apt-get install openssl`|
 
-After you are done with the installation use the openssl command line tool to
-create your private RSA key:
+After you are done with the installation use the openssl command line tool you
+can go forward with generating your private RSA key:
  ~~~
  $ openssl genrsa -des3 -out server.key.org 2048
  # Enter and confirm a password
  ~~~
 
+##### Removing the password
+
 The generated key is protected by a password which needs to be removed so
 that it can be loaded by the web server without asking for the password.
-
  ~~~
  $ openssl rsa -in server.key.org -out server.key
  ~~~
@@ -68,10 +68,10 @@ Your private key used for the process is now saved in the file `server.key`
 
 #### Generate a CSR (Certificate Singing Request)
 
-The next set is generating the CSR which is required by the CA and is
-containing all the information regarding your company or organization thus
-prompting you to enter those.
-
+For acquiring an SSL Certificate you need to provide your CA with a CSR
+(Certificate Singing Request). This can also be used for creating self-signed
+certificates. The CSR contains all the information regarding your company or
+organization thus prompting you to enter those:
  ~~~
  $ openssl req -new -key server.key -out server.csr
  # Output
@@ -88,7 +88,7 @@ prompting you to enter those.
  # An optional company name []:
  ~~~
 
-The file created after this process is a `server.csr`.
+The file created after this process is named `server.csr`.
 
 Please pay attention to the fields Country Name and Common Name. The country
 name should contain the 2 letter code of your country according to the
@@ -100,18 +100,18 @@ cannot be a root domain but has to have a format like `www.example.com`.
 #### Issuing the Certificate
 
 After choosing you CA you have to go through their process of issuing the
-certificate. For that you will need to provide the CSR file and in many cases
-to define the web server you are going to use. In that case you should select
-the Nginx web server and if this is not an option then Apache 2.x should also
-be OK.
+certificate. For that you will need the CSR file, which was created in the
+previous step, and in many cases to define the web server you are going to use.
+In that case you should select the Nginx web server and if this is not an
+option then Apache 2.x should also be OK.
 
-In the end your CA will provide you some files including the SSL certificate
-and the Certificate Chain.
+In the end your CA will provide you with some files including the SSL
+certificate and the Certificate Chain.
 
 Note: The certificate chain is a chain of trust that proves that your
 certificate is issued by a trustworthy provider authorized by a Root CA.  Root
 CA certificates are stored in all modern browsers and this is how your browser
-is able to verify that your website is secure. In the other case you will get
+is able to verify that a website is secure. In any other case you will get
 something like this
 ![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
 
