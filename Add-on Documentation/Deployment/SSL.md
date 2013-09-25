@@ -106,14 +106,40 @@ In that case you should select the Nginx web server and if this is not an
 option then Apache 2.x should also be OK.
 
 In the end your CA will provide you with some files including the SSL
-certificate and the Certificate Chain.
+certificate and the Certificate Chain. Your certificate file should have either
+a `.crt` or `.pem` extension. Our service requires the certificates to be in PEM format so if it isn't you can
+transform it with the following command:
+ ~~~
+ openssl x509 -inform PEM -in www_example_com.crt -out www_example_com.pem
+ ~~~
 
-Note: The certificate chain is a chain of trust that proves that your
-certificate is issued by a trustworthy provider authorized by a Root CA.  Root
+The content of the file should look like this:
+ ~~~
+ -----BEGIN CERTIFICATE-----
+ ...
+ -----END CERTIFICATE-----
+ ~~~
+
+The certificate chain is a chain of trust which proves that your
+certificate is issued by a trustworthy provider authorized by a Root CA. Root
 CA certificates are stored in all modern browsers and this is how your browser
 is able to verify that a website is secure. In any other case you will get
 something like this
 ![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
+
+The actuall file contains indeed a series of certificates which succeed each other:
+ ~~~
+ -----BEGIN CERTIFICATE-----
+ ...
+ -----END CERTIFICATE-----
+ -----BEGIN CERTIFICATE-----
+ ...
+ -----END CERTIFICATE-----
+ ~~~
+
+Note: In case that you don't have a bundle but a series of `.crt` files you have to
+place them in the right order starting from the intermediate certificate and
+ending to the root certificate. Please make sure that they are in PEM format.
 
 ### Adding the SSL addon
 
