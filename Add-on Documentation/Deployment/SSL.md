@@ -18,7 +18,7 @@ To enable SSL support for custom domains like `www.example.com` or
 Please follow these three simple steps to add SSL support to your deployment.
 
  1. Acquire a signed certificate from your certificate authority of trust.
- 2. Add the SSL addon providing the certificate, the private key and
+ 2. Add the SSL addon providing the certificate, the private key and the
     certificate-chain files.
  3. Set your DNS entry to point to your SSL DNS Domain
 
@@ -49,8 +49,8 @@ to your platform.
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
 |Ubuntu Linux|`apt-get install openssl`|
 
-After you are done with the installation use the openssl command line tool you
-can go forward with generating your private RSA key:
+After you are done with the installation use the openssl command line tool to
+go forward with generating your private RSA key:
  ~~~
  $ openssl genrsa -des3 -out server.key.org 2048
  # Enter and confirm a password
@@ -74,18 +74,17 @@ certificates. The CSR contains all the information regarding your company or
 organization thus prompting you to enter those:
  ~~~
  $ openssl req -new -key server.key -out server.csr
- # Output
- # Country Name (2 letter code) [AU]:DE
- # State or Province Name (full name) [Some-State]:
- # Locality Name (eg, city) []:
- # Organization Name (eg, company) [Internet Widgits Pty Ltd]:
- # Organizational Unit Name (eg, section) []:Information Technology
- # Common Name (eg, your name or your server's hostname) []:www.example.com
- # Email Address []:
- # Please enter the following 'extra' attributes
- # to be sent with your certificate request
- # A challenge password []:
- # An optional company name []:
+ Country Name (2 letter code) [AU]:DE
+ State or Province Name (full name) [Some-State]:
+ Locality Name (eg, city) []:
+ Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+ Organizational Unit Name (eg, section) []:Information Technology
+ Common Name (eg, your name or your server's hostname) []:www.example.com
+ Email Address []:
+ Please enter the following 'extra' attributes
+ to be sent with your certificate request
+ A challenge password []:
+ An optional company name []:
  ~~~
 
 The file created after this process is named `server.csr`.
@@ -93,24 +92,24 @@ The file created after this process is named `server.csr`.
 Please pay attention to the fields Country Name and Common Name. The country
 name should contain the 2 letter code of your country according to the
 [ISO 3166-1](http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm)
-format. Second and most important is the common name. That should reflect the
+format. Second and most important is the common name. This should reflect the
 domain for which you want to issue the certificate. As mentioned earlier this
 cannot be a root domain but has to have a format like `www.example.com`.
 
 #### Issuing the Certificate
 
-After choosing you CA you have to go through their process of issuing the
-certificate. For that you will need the CSR file, which was created in the
-previous step, and in many cases to define the web server you are going to use.
+After choosing your CA you have to go through their process of issuing the
+certificate. For this you will need the CSR file, which was created in the
+previous step, and quite often to define the web server you are going to use.
 In that case you should select the Nginx web server and if this is not an
 option then Apache 2.x should also be OK.
 
 In the end your CA will provide you with some files including the SSL
 certificate and the Certificate Chain. Your certificate file should have either
-a `.crt` or `.pem` extension. Our service requires the certificates to be in PEM format so if it isn't you can
-transform it with the following command:
+a `.crt` or `.pem` extension. Our service requires the certificates to be in
+PEM format so if it isn't you can transform it with the following command:
  ~~~
- openssl x509 -inform PEM -in www_example_com.crt -out www_example_com.pem
+ $ openssl x509 -inform PEM -in www_example_com.crt -out www_example_com.pem
  ~~~
 
 The content of the file should look like this:
@@ -120,14 +119,14 @@ The content of the file should look like this:
  -----END CERTIFICATE-----
  ~~~
 
-The certificate chain is a chain of trust which proves that your
-certificate is issued by a trustworthy provider authorized by a Root CA. Root
-CA certificates are stored in all modern browsers and this is how your browser
-is able to verify that a website is secure. In any other case you will get
-something like this
+The certificate chain is a chain of trust which proves that your certificate is
+issued by a trustworthy provider authorized by a Root CA. Root CA certificates
+are stored in all modern browsers and this is how your browser is able to
+verify that a website is secure. In any other case you will get something like
+this
 ![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
 
-The actuall file contains indeed a series of certificates which succeed each other:
+The file actually contains a series of certificates which succeed each other:
  ~~~
  -----BEGIN CERTIFICATE-----
  ...
@@ -137,23 +136,28 @@ The actuall file contains indeed a series of certificates which succeed each oth
  -----END CERTIFICATE-----
  ~~~
 
-Note: In case that you don't have a bundle but a series of `.crt` files you have to
-place them in the right order starting from the intermediate certificate and
-ending to the root certificate. Please make sure that they are in PEM format.
+Note: If you don't have a certificate bundle but a series of `.crt` files you
+have to place them in the right order starting from the intermediate
+certificate and ending to the root certificate. Please make sure that they are
+in PEM format.
 
 ### Adding the SSL addon
 
 To add the SSL addon simply provide the paths to the files provided by the
 certificate authority using the respective parameters of the addon.add command.
-
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon.add ssl.host --cert path/to/CERT_FILE --key path/to/KEY_FILE --chain path/to/CHAIN_FILE
  ~~~
 
 In order to check the status of the addon you can do the following.
-
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon ssl.host
+ Addon                    : ssl.host
+
+ Settings
+   SSLDEV_CERT_EXPIRES      : 2016-01-01 10:00:00
+   SSLDEV_DNS_DOMAIN        : random.url.com # replace
+   SSLDEV_CERT_INCEPTS      : 2013-01-01 10:00:00
  ~~~
 
 When the SSL certificate is expired, you can update it by removing the addon
@@ -161,7 +165,6 @@ and re-adding it providing the updated certificate. The SSL service is provided
 for 23 minutes after removing the addon so that it can be updated in the
 meantime without interrupting the service. To achieve that you have to run the
 following commands.
-
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon.remove ssl.host
  $ cctrlapp APP_NAME/DEP_NAME addon.add ssl.host --cert path/to/NEW_CERT_FILE --key path/to/KEY_FILE --chain path/to/CHAIN_FILE
