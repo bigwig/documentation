@@ -8,7 +8,7 @@ As part of the provided `.cloudcontrolled.com` subdomain all deployments have ac
 * `https://APP_NAME.cloudcontrolled.com` for the default deployment 
 * `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
 
-> (please note the **dash** between DEP_NAME and APP_NAME). 
+> (please note the **dash** between DEP_NAME and APP_NAME).
 
 SSL support for custom domains is available through the SSL add-on.
 
@@ -190,13 +190,13 @@ For PHP you can either redirect via Apache's mod_rewrite using a `.htaccess`
 file or directly in your PHP code.
 
 #### .htaccess
-```apache
+~~~
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTP:X-FORWARDED-PROTO} !=https [NC]
     RewriteRule ^.*$ https://%{HTTP_HOST}
 </IfModule>
-```
+~~~
 
 #### PHP
 ~~~php
