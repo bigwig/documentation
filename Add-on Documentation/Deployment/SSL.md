@@ -22,7 +22,7 @@ Please follow these three simple steps to add SSL support to your deployment.
  1. Acquire a signed certificate from your certificate authority of trust.
  2. Add the SSL addon providing the certificate, the private key and the
     certificate-chain files.
- 3. Set your DNS entry to point to your SSL DNS Domain
+ 3. Set your DNS entry to point to your SSL DNS Domain.
 
 Note: Please allow up to one hour for DNS changes to propagate before they go into effect.
 Root or naked domains like `example.com` without a subdomain are not supported.
@@ -44,7 +44,7 @@ certificate and the certificate chain. For that process you will need the
 openssl toolkit which can be installed with one of the following ways according
 to your platform.
 
-|Platform|Install method|
+|Platform|Install method
 |:-------|:-------------|
 |Mac OS X ([Homebrew](http://brew.sh/))| `brew install openssl`|
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
