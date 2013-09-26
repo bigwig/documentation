@@ -49,6 +49,7 @@ to your platform.
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
 |Ubuntu Linux|`apt-get install openssl`|
 
+
 After you are done with the installation use the openssl command line tool to
 go forward with generating your private RSA key:
  ~~~
@@ -124,6 +125,7 @@ issued by a trustworthy provider authorized by a Root CA. Root CA certificates
 are stored in all modern browsers and this is how your browser is able to
 verify that a website is secure. In any other case you will get something like
 this
+
 ![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
 
 The file actually contains a series of certificates which succeed each other:
@@ -187,14 +189,14 @@ For PHP you can either redirect via Apache's mod_rewrite using a `.htaccess`
 file or directly in your PHP code.
 
 #### .htaccess
-~~~
-<IfModule mod_rewrite.c> 
+```apache
+<IfModule mod_rewrite.c>
     RewriteEngine On
 
     RewriteCond %{HTTP:X-FORWARDED-PROTO} !=https [NC]
     RewriteRule ^.*$ https://%{HTTP_HOST}
 </IfModule>
-~~~
+```
 
 #### PHP
 ~~~php
