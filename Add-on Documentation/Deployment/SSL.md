@@ -158,7 +158,7 @@ In order to check the status of the addon you can do the following.
 
  Settings
    SSLDEV_CERT_EXPIRES      : 2016-01-01 10:00:00
-   SSLDEV_DNS_DOMAIN        : random.url.com # replace
+   SSLDEV_DNS_DOMAIN        : addonssl-depxxxxxxxx-1234567890.eu-west-1.elb.amazonaws.com
    SSLDEV_CERT_INCEPTS      : 2013-01-01 10:00:00
  ~~~
 
