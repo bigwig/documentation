@@ -48,7 +48,7 @@ to your platform.
 |:-------|:-------------|
 |Mac OS X ([Homebrew](http://brew.sh/))| `brew install openssl`|
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
-|Ubuntu Linux|`apt-get install openssl`|
+|Ubuntu GNU/Linux|`apt-get install openssl`|
 
 
 After you are done with the installation use the openssl command line tool to
