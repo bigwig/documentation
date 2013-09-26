@@ -1,19 +1,21 @@
 # SSL Add-on
 
-SSL encryption is available for improved security when transmitting passwords
-and other sensitive data. As part of the provided `.cloudcontrolled.com`
-subdomain all deployments have access to piggyback SSL using a
-`*.cloudconrolled.com` wildcard certificate. To use this, simply point your
-browser to `https://APP_NAME.cloudcontrolled.com` for the default deployment or
-to `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
-(please note the dash between DEP_NAME and APP_NAME). SSL support for custom
-domains is available through the SSL add-on.
+Secure Socket Layer (SSL) encryption is available for improved security when transmitting passwords
+and other sensitive data. 
+
+As part of the provided `.cloudcontrolled.com` subdomain all deployments have access to piggyback SSL using a
+`*.cloudconrolled.com` wildcard certificate. To use this, simply point your browser to 
+* `https://APP_NAME.cloudcontrolled.com` for the default deployment 
+* `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
+
+> (please note the **dash** between DEP_NAME and APP_NAME). 
+
+SSL support for custom domains is available through the SSL add-on.
 
 ## Custom Domain Certificates
 
 To enable SSL support for custom domains like `www.example.com` or
-`secure.example.com` you need the SSL add-on. Root or naked domains like
-`example.com` are not supported.
+`secure.example.com` you need the SSL add-on.
 
 Please follow these three simple steps to add SSL support to your deployment.
 
@@ -22,9 +24,8 @@ Please follow these three simple steps to add SSL support to your deployment.
     certificate-chain files.
  3. Set your DNS entry to point to your SSL DNS Domain
 
-Note: Please allow up to one hour for DNS changes to propagate before they go
-into effect.
-
+Note: Please allow up to one hour for DNS changes to propagate before they go into effect.
+Root or naked domains like `example.com` without a subdomain are not supported.
 ### Acquiring an SSL Certificate
 
 There is wide variety of Certificate Authorities (CA) which differ in cost
