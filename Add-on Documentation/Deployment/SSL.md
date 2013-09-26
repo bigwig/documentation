@@ -1,11 +1,11 @@
 # SSL Add-on
 
 Secure Socket Layer (SSL) encryption is available for improved security when transmitting passwords
-and other sensitive data. 
+and other sensitive data.
 
 As part of the provided `.cloudcontrolled.com` subdomain all deployments have access to piggyback SSL using a
-`*.cloudcontrolled.com` wildcard certificate. To use this, simply point your browser to 
-* `https://APP_NAME.cloudcontrolled.com` for the default deployment 
+`*.cloudcontrolled.com` wildcard certificate. To use this, simply point your browser to
+* `https://APP_NAME.cloudcontrolled.com` for the default deployment
 * `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
 
 > (please note the **dash** between DEP_NAME and APP_NAME).
@@ -41,7 +41,7 @@ of individual providers.
 
 As mentioned earlier, to enable SSL support you need a private key, your
 certificate and the certificate chain. For that process you will need the
-openssl toolkit which can be installed with one of the following ways according
+`openssl` toolkit which can be installed with one of the following ways according
 to your platform.
 
 |Platform|Install method|
@@ -51,7 +51,7 @@ to your platform.
 |Ubuntu GNU/Linux|`apt-get install openssl`|
 
 
-After you are done with the installation use the openssl command line tool to
+After you are done with the installation use the `openssl` command line tool to
 go forward with generating your private RSA key:
  ~~~
  $ openssl genrsa -des3 -out server.key.org 2048
@@ -201,11 +201,11 @@ file or directly in your PHP code.
 #### PHP
 ~~~php
 <?php
-    if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && 
+    if (!isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
         $_SERVER['HTTP_X_FORWARDED_PROTO'] != 'https') {
         header(
-            'Location: https://' . 
-            $_SERVER['HTTP_HOST'] . 
+            'Location: https://' .
+            $_SERVER['HTTP_HOST'] .
             $_SERVER['REQUEST_URI']
         );
     }
