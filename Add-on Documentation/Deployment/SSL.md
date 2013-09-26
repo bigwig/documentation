@@ -44,7 +44,7 @@ certificate and the certificate chain. For that process you will need the
 openssl toolkit which can be installed with one of the following ways according
 to your platform.
 
-|Platform|Install method
+|Platform|Install method|
 |:-------|:-------------|
 |Mac OS X ([Homebrew](http://brew.sh/))| `brew install openssl`|
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
