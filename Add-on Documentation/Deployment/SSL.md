@@ -57,7 +57,7 @@ go forward with generating your private RSA key:
  # Enter and confirm a password
  ~~~
 
-##### Removing the password
+#### Removing the password
 
 The generated key is protected by a password which needs to be removed so
 that it can be loaded by the web server without asking for the password.
