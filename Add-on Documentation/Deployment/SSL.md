@@ -4,7 +4,7 @@ Secure Socket Layer (SSL) encryption is available for improved security when tra
 and other sensitive data. 
 
 As part of the provided `.cloudcontrolled.com` subdomain all deployments have access to piggyback SSL using a
-`*.cloudconrolled.com` wildcard certificate. To use this, simply point your browser to 
+`*.cloudcontrolled.com` wildcard certificate. To use this, simply point your browser to 
 * `https://APP_NAME.cloudcontrolled.com` for the default deployment 
 * `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
 
