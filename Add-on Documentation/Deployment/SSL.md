@@ -192,7 +192,6 @@ file or directly in your PHP code.
 ```apache
 <IfModule mod_rewrite.c>
     RewriteEngine On
-
     RewriteCond %{HTTP:X-FORWARDED-PROTO} !=https [NC]
     RewriteRule ^.*$ https://%{HTTP_HOST}
 </IfModule>
