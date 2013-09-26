@@ -1,14 +1,15 @@
 # SSL Add-on
 
-Secure Socket Layer (SSL) encryption is available for improved security when transmitting passwords
-and other sensitive data.
+Secure Socket Layer (SSL) encryption is available for improved security when
+transmitting passwords and other sensitive data.
 
-As part of the provided `.cloudcontrolled.com` subdomain all deployments have access to piggyback SSL using a
-`*.cloudcontrolled.com` wildcard certificate. To use this, simply point your browser to
+As part of the provided `.cloudcontrolled.com` subdomain all deployments have
+access to piggyback SSL using a `*.cloudcontrolled.com` wildcard certificate.
+To use this, simply point your browser to:
 * `https://APP_NAME.cloudcontrolled.com` for the default deployment
 * `https://DEP_NAME-APP_NAME.cloudcontrolled.com` for non-default deployments
 
-> (please note the **dash** between DEP_NAME and APP_NAME).
+    Please note the **dash** between DEP_NAME and APP_NAME.
 
 SSL support for custom domains is available through the SSL add-on.
 
@@ -17,24 +18,29 @@ SSL support for custom domains is available through the SSL add-on.
 To enable SSL support for custom domains like `www.example.com` or
 `secure.example.com` you need the SSL add-on.
 
-Please follow these three simple steps to add SSL support to your deployment.
+Please go through the following steps, which are described in the upcoming
+sections, to add SSL support to your deployment:
 
- 1. Acquire a signed certificate from your certificate authority of trust.
- 2. Add the SSL addon providing the certificate, the private key and the
-    certificate-chain files.
- 3. Set your DNS entry to point to your SSL DNS Domain.
+ * Acquire a signed certificate from your certificate authority of trust.
+ * Add the SSL addon providing the certificate, the private key and the
+   certificate-chain files.
+ * Set your DNS entry to point to your SSL DNS Domain.
 
-Note: Please allow up to one hour for DNS changes to propagate before they go into effect.
-Root or naked domains like `example.com` without a subdomain are not supported.
+Note: Please allow up to one hour for DNS changes to propagate before they go
+into effect.  Root or naked domains like `example.com` without a subdomain are
+not supported.
+
 ### Acquiring an SSL Certificate
 
-There is wide variety of Certificate Authorities (CA) which differ in cost
-and the process of acquiring an SSL certificate. The majority of them offers a
-trial period that you can try and compare every service. In most cases you need
-to go through the following steps.
+There is wide variety of Certificate Authorities (CA) which differ in cost and
+the process of acquiring an SSL certificate. An easy way to compare would be
+looking at
+[www.sslshopper.com](http://www.sslshopper.com/certificate-authority-reviews.html).
+Some even offer a free trial period. In most cases you need to go through the
+following steps.
 
 Note: For testing purposes you can always use a self-signed certificate which
-is free of costs and does not require going through the registration process
+is free of charge and does not require going through the registration process
 of individual providers.
 
 #### Generate a private key
@@ -55,13 +61,13 @@ After you are done with the installation use the `openssl` command line tool to
 go forward with generating your private RSA key:
  ~~~
  $ openssl genrsa -des3 -out server.key.org 2048
- # Enter and confirm a password
+ # Enter and confirm a passphrase
  ~~~
 
-#### Removing the password
+#### Removing the passphrase
 
-The generated key is protected by a password which needs to be removed so
-that it can be loaded by the web server without asking for the password.
+The generated key is protected by a passphrase which needs to be removed so
+that it can be loaded by the web server.
  ~~~
  $ openssl rsa -in server.key.org -out server.key
  ~~~
@@ -91,10 +97,10 @@ organization thus prompting you to enter those:
 
 The file created after this process is named `server.csr`.
 
-Please pay attention to the fields Country Name and Common Name. The country
-name should contain the 2 letter code of your country according to the
+Note: Please pay attention to the fields Country Name and Common Name. The Country
+Name should contain the 2 letter code of your country according to the
 [ISO 3166-1](http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements.htm)
-format. Second and most important is the common name. This should reflect the
+format. Second and most important is the Common Name. This should reflect the
 domain for which you want to issue the certificate. As mentioned earlier this
 cannot be a root domain but has to have a format like `www.example.com`.
 
@@ -107,14 +113,14 @@ In that case you should select the Nginx web server and if this is not an
 option then Apache 2.x should also be OK.
 
 In the end your CA will provide you with some files including the SSL
-certificate and the Certificate Chain. Your certificate file should have either
+certificate and the certificate chain. Your certificate file should have either
 a `.crt` or `.pem` extension. Our service requires the certificates to be in
 PEM format so if it isn't you can transform it with the following command:
  ~~~
  $ openssl x509 -inform PEM -in www_example_com.crt -out www_example_com.pem
  ~~~
 
-The content of the file should look like this:
+The content of the SSL certificate file should look like this:
  ~~~
  -----BEGIN CERTIFICATE-----
  ...
@@ -129,7 +135,7 @@ this
 
 ![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
 
-The file actually contains a series of certificates which succeed each other:
+You should also have a file which is a bundle of certificates which succeed each other:
  ~~~
  -----BEGIN CERTIFICATE-----
  ...
