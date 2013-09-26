@@ -45,7 +45,7 @@ to your platform.
 
 |Platform|Install method|
 |:-------|:-------------|
-|Mac OS X|[Homebrew](http://mxcl.github.com/homebrew/): `brew install openssl`|
+|Mac OS X ([Homebrew](http://brew.sh/))| `brew install openssl`|
 |Windows|[Windows package installer](http://gnuwin32.sourceforge.net/packages/openssl.htm)|
 |Ubuntu Linux|`apt-get install openssl`|
 
@@ -138,7 +138,7 @@ The file actually contains a series of certificates which succeed each other:
  -----END CERTIFICATE-----
  ~~~
 
-Note: If you don't have a certificate bundle but a series of `.crt` files you
+Note: If you don't have a certificate bundle but a series of `.crt` files your
 have to place them in the right order starting from the intermediate
 certificate and ending to the root certificate. Please make sure that they are
 in PEM format.
