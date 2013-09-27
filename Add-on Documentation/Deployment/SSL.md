@@ -2,9 +2,9 @@
 
 **TL;DR:**
 
- * This addon provides SSL support for custom domains.
+ * This add-on provides SSL support for custom domains.
  * You need to have a Public Certificate, a Private Key and a Certificate Chain.
- * Add the addon to your deployment via our CLI with the [addon.add command](#adding-the-ssl-addon).
+ * Add the add-on to your deployment via our CLI with the [addon.add command](#adding-the-ssl-add-on).
 
 Secure Socket Layer (SSL) encryption is available for improved security when
 transmitting passwords and other sensitive data.
@@ -28,7 +28,7 @@ Please go through the following steps, which are described in the upcoming
 sections, to add SSL support to your deployment:
 
  * Acquire a signed certificate from your certificate authority of trust.
- * Add the SSL addon providing the certificate, the private key and the
+ * Add the SSL add-on providing the certificate, the private key and the
    certificate-chain files.
  * Set your DNS entry to point to your SSL DNS Domain.
 
@@ -156,7 +156,7 @@ have to place them in the right order starting from the intermediate
 certificate and ending to the root certificate. Please make sure that they are
 in PEM format.
 
-### Adding the SSL addon
+### Adding the SSL add-on
 
 To add the SSL addon simply provide the paths to the files provided by the
 certificate authority using the respective parameters of the addon.add command.
@@ -175,9 +175,9 @@ In order to check the status of the addon you can do the following.
    SSLDEV_CERT_INCEPTS      : 2013-01-01 10:00:00
  ~~~
 
-When the SSL certificate is expired, you can update it by removing the addon
+When the SSL certificate is expired, you can update it by removing the add-on
 and re-adding it providing the updated certificate. The SSL service is provided
-for 23 minutes after removing the addon so that it can be updated in the
+for 23 minutes after removing the add-on so that it can be updated in the
 meantime without interrupting the service. To achieve that you have to run the
 following commands.
  ~~~
