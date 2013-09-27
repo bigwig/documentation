@@ -1,5 +1,11 @@
 # SSL Add-on
 
+**TL;DR:**
+
+ * This addon provides SSL support for custom domains.
+ * You need to have a Public Key, a Private Key and a Certificate Chain.
+ * Add the addon to your deployment via our CLI with the [addon.add command](#adding-the-ssl-addon).
+
 Secure Socket Layer (SSL) encryption is available for improved security when
 transmitting passwords and other sensitive data.
 
