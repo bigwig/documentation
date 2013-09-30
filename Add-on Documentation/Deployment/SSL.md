@@ -139,7 +139,7 @@ are stored in all modern browsers and this is how your browser is able to
 verify that a website is secure. In any other case you will get something like
 this
 
-![Firefox warning](http://www.nczonline.net/blog/wp-content/uploads/2012/08/ffssl.png)
+![Firefox warning](https://s3-eu-west-1.amazonaws.com/cctrl-www-production/custom_assets/attachments/000/000/038/original/ffssl.png)
 
 You should also have a file which is a bundle of certificates which succeed each other:
  ~~~
