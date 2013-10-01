@@ -3,7 +3,7 @@
 **TL;DR:**
 
  * This add-on provides SSL support for custom domains.
- * You need to have a Public Certificate, a Private Key and a Certificate Chain.
+ * You need to have an RSA Private Key, an SSL Certificate and a Certificate Chain.
  * Add the add-on to your deployment via our CLI with the [addon.add command](#adding-the-ssl-add-on).
 
 Secure Socket Layer (SSL) encryption is available for improved security when
@@ -80,10 +80,10 @@ that it can be loaded by the web server.
 
 Your private key used for the process is now saved in the file `server.key`
 
-#### Generate a CSR (Certificate Singing Request)
+#### Generate a CSR (Certificate Signing Request)
 
 For acquiring an SSL Certificate you need to provide your CA with a CSR
-(Certificate Singing Request). This can also be used for creating self-signed
+(Certificate Signing Request). This can also be used for creating self-signed
 certificates. The CSR contains all the information regarding your company or
 organization thus prompting you to enter those:
  ~~~
@@ -158,13 +158,13 @@ in PEM format.
 
 ### Adding the SSL add-on
 
-To add the SSL addon simply provide the paths to the files provided by the
+To add the SSL add-on simply provide the paths to the files provided by the
 certificate authority using the respective parameters of the addon.add command.
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon.add ssl.host --cert path/to/CERT_FILE --key path/to/KEY_FILE --chain path/to/CHAIN_FILE
  ~~~
 
-In order to check the status of the addon you can do the following.
+In order to check the status of the add-on you can do the following.
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon ssl.host
  Addon                    : ssl.host
@@ -186,7 +186,7 @@ following commands.
  ~~~
 
 Note: You need provide the original key and chain again when updating the
-addon even if those are not changed.
+add-on even if those are not changed.
 
 ## HTTPS Redirects
 
