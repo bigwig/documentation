@@ -151,7 +151,7 @@ You should also have a file which is a bundle of certificates which succeed each
  -----END CERTIFICATE-----
  ~~~
 
-Note: If you don't have a certificate bundle but a series of `.crt` files your
+Note: If you don't have a certificate bundle but a series of `.crt` files you
 have to place them in the right order starting from the intermediate
 certificate and ending to the root certificate. Please make sure that they are
 in PEM format.
@@ -185,7 +185,7 @@ following commands.
  $ cctrlapp APP_NAME/DEP_NAME addon.add ssl.host --cert path/to/NEW_CERT_FILE --key path/to/KEY_FILE --chain path/to/CHAIN_FILE
  ~~~
 
-Note: You need provide the original key and chain again when updating the
+Note: You need to provide the original key and chain again when updating the
 add-on even if those are not changed.
 
 ## HTTPS Redirects
