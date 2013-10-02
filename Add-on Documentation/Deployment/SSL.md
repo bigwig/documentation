@@ -2,9 +2,9 @@
 
 **TL;DR:**
 
- * This add-on provides SSL support for custom domains.
+ * This Add-on provides SSL support for custom domains.
  * You need to have an RSA Private Key, an SSL Certificate and a Certificate Chain.
- * Add the add-on to your deployment via our CLI with the [addon.add command](#adding-the-ssl-add-on).
+ * Add the Add-on to your deployment via our CLI with the [addon.add command](#adding-the-ssl-add-on).
 
 Secure Socket Layer (SSL) encryption is available for improved security when
 transmitting passwords and other sensitive data.
@@ -17,18 +17,18 @@ To use this, simply point your browser to:
 
     Please note the **dash** between DEP_NAME and APP_NAME.
 
-SSL support for custom domains is available through the SSL add-on.
+SSL support for custom domains is available through the SSL Add-on.
 
 ## Custom Domain Certificates
 
 To enable SSL support for custom domains like `www.example.com` or
-`secure.example.com` you need the SSL add-on.
+`secure.example.com` you need the SSL Add-on.
 
 Please go through the following steps, which are described in the upcoming
 sections, to add SSL support to your deployment:
 
  * Acquire a signed certificate from your certificate authority of trust.
- * Add the SSL add-on providing the certificate, the private key and the
+ * Add the SSL Add-on providing the certificate, the private key and the
    certificate-chain files.
  * Set your DNS entry to point to your SSL DNS Domain.
 
@@ -156,15 +156,15 @@ have to place them in the right order starting from the intermediate
 certificate and ending to the root certificate. Please make sure that they are
 in PEM format.
 
-### Adding the SSL add-on
+### Adding the SSL Add-on
 
-To add the SSL add-on simply provide the paths to the files provided by the
+To add the SSL Add-on simply provide the paths to the files provided by the
 certificate authority using the respective parameters of the addon.add command.
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon.add ssl.host --cert path/to/CERT_FILE --key path/to/KEY_FILE --chain path/to/CHAIN_FILE
  ~~~
 
-In order to check the status of the add-on you can do the following.
+In order to check the status of the Add-on you can do the following.
  ~~~
  $ cctrlapp APP_NAME/DEP_NAME addon ssl.host
  Addon                    : ssl.host
@@ -175,9 +175,9 @@ In order to check the status of the add-on you can do the following.
    SSLDEV_CERT_INCEPTS      : 2013-01-01 10:00:00
  ~~~
 
-When the SSL certificate is expired, you can update it by removing the add-on
+When the SSL certificate is expired, you can update it by removing the Add-on
 and re-adding it providing the updated certificate. The SSL service is provided
-for 23 minutes after removing the add-on so that it can be updated in the
+for 23 minutes after removing the Add-on so that it can be updated in the
 meantime without interrupting the service. To achieve that you have to run the
 following commands.
  ~~~
@@ -186,7 +186,7 @@ following commands.
  ~~~
 
 Note: You need to provide the original key and chain again when updating the
-add-on even if those are not changed.
+Add-on even if those are not changed.
 
 ## HTTPS Redirects
 
