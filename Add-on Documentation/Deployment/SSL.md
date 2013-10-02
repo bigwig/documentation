@@ -1,6 +1,6 @@
 # SSL Add-on
 
-**TL;DR:**
+Overview:
 
  * This Add-on provides SSL support for custom domains.
  * You need to have an RSA Private Key, an SSL Certificate and a Certificate Chain.
